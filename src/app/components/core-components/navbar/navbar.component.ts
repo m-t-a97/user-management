@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
   constructor() {
     this.navbarItems = [
       {
-        name: 'MANAGE USERS',
+        name: 'USERS',
         navigationLinkPath: '/manage-users',
       },
       {

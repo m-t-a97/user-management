@@ -5,17 +5,27 @@ import {
   Validators,
   AbstractControl,
 } from '@angular/forms';
+import { UserCreationService } from 'src/app/services/user/user-creation/user-creation.service';
+import { FirestoreUserCreationService } from 'src/app/services/user/user-creation/firestore-user-creation.service';
+import { FirestoreService } from 'src/app/services/firestore/firestore.service';
 
 @Component({
   selector: 'create-user-form-component',
   templateUrl: './create-user-form.component.html',
   styleUrls: ['./create-user-form.component.scss'],
+  providers: [
+    FirestoreService,
+    { provide: UserCreationService, useClass: FirestoreUserCreationService },
+  ],
 })
 export class CreateUserFormComponent implements OnInit {
   public readonly formGroup: FormGroup;
   public formMessage: string = '';
 
-  constructor(private readonly formBuilder: FormBuilder) {
+  constructor(
+    private readonly formBuilder: FormBuilder,
+    private readonly userCreationService: UserCreationService
+  ) {
     this.formGroup = this.formBuilder.group({
       username: ['', Validators.required],
       role: ['', Validators.required],
@@ -25,7 +35,15 @@ export class CreateUserFormComponent implements OnInit {
   ngOnInit(): void {}
 
   public createUser() {
-    console.log(this.formGroup.value);
+    try {
+      console.log(this.formGroup.value);
+      this.userCreationService.createUser(this.formGroup.value);
+      this.setFormMessage('');
+      this.formGroup.reset();
+    } catch (error) {
+      console.log(error);
+      this.setFormMessage(error['message']);
+    }
   }
 
   public isFormValid(): void {

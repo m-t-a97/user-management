@@ -8,7 +8,7 @@ import { INavbarItem } from '../../../models/navbar/i-navbar-item';
 })
 export class NavbarComponent implements OnInit {
   public readonly appTitle = 'USER MANAGEMENT';
-  public readonly navbarItems: INavbarItem[];
+  private readonly navbarItems: INavbarItem[] = [];
 
   constructor() {
     this.navbarItems = [
@@ -17,11 +17,15 @@ export class NavbarComponent implements OnInit {
         navigationLinkPath: '/manage-users',
       },
       {
-        name: 'ADD USER',
-        navigationLinkPath: '/add-user',
+        name: 'USER CREATION',
+        navigationLinkPath: '/user-creation',
       },
     ];
   }
 
   ngOnInit(): void {}
+
+  public get NavbarItems(): INavbarItem[] {
+    return this.navbarItems;
+  }
 }

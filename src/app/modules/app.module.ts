@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedCommonModule } from './shared-common.module';
-import { ClarityModule } from '@clr/angular';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
@@ -12,9 +11,8 @@ import { AppComponent } from '../components/core-components/app-component/app.co
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    AppRoutingModule,
     SharedCommonModule,
-    ClarityModule,
+    AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseKey),
     AngularFirestoreModule,
     CoreComponentsModule,

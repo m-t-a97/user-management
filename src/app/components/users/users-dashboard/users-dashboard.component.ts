@@ -8,14 +8,14 @@ import { IUser } from '../../../models/users/i-user';
 })
 export class UsersDashboardComponent implements OnInit {
   public Users: IUser[] = [
-    { uid: '1', username: 'Name', role: 'Role' },
-    { uid: '2', username: 'Name', role: 'Role' },
-    { uid: '3', username: 'Name', role: 'Role' },
-    { uid: '4', username: 'Name', role: 'Role' },
-    { uid: '5', username: 'Name', role: 'Role' },
-    { uid: '6', username: 'Name', role: 'Role' },
-    { uid: '7', username: 'Name', role: 'Role' },
-    { uid: '8', username: 'Name', role: 'Role' },
+    { uid: '1', username: 'Username', role: 'Role' },
+    { uid: '2', username: 'Username', role: 'Role' },
+    { uid: '3', username: 'Username', role: 'Role' },
+    { uid: '4', username: 'Username', role: 'Role' },
+    { uid: '5', username: 'Username', role: 'Role' },
+    { uid: '6', username: 'Username', role: 'Role' },
+    { uid: '7', username: 'Username', role: 'Role' },
+    { uid: '8', username: 'Username', role: 'Role' },
   ];
 
   constructor() {}

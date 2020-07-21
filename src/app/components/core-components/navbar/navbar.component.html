@@ -1,8 +1,8 @@
 <div id="container" class="card">
   <h1 id="app-title">{{ appTitle }}</h1>
-  <div id="navbar-list-box">
+  <nav id="navbar-list-box">
     <ul>
-      <li *ngFor="let navbarItem of navbarItems">
+      <li *ngFor="let navbarItem of NavbarItems">
         <a
           [routerLink]="navbarItem.navigationLinkPath"
           routerLinkActive="active"
@@ -11,5 +11,5 @@
         </a>
       </li>
     </ul>
-  </div>
+  </nav>
 </div>

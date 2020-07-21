@@ -1,0 +1,15 @@
+<div id="container" class="card">
+  <h1 id="app-title">{{ appTitle }}</h1>
+  <div id="navbar-list-box">
+    <ul>
+      <li *ngFor="let navbarItem of navbarItems">
+        <a
+          [routerLink]="navbarItem.navigationLinkPath"
+          routerLinkActive="active"
+        >
+          {{ navbarItem.name }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

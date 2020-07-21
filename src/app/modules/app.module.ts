@@ -1,18 +1,22 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from '../components/app-component/app.component';
+import { SharedCommonModule } from './shared-common.module';
 import { ClarityModule } from '@clr/angular';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from 'src/environments/environment';
+import { CoreComponentsModule } from '../components/core-components/core-components.module';
+import { AppComponent } from '../components/core-components/app-component/app.component';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    SharedCommonModule,
     ClarityModule,
-    BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebaseKey),
+    AngularFirestoreModule,
+    CoreComponentsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,4 +1,16 @@
 #container {
   margin: 0;
+  padding: 20px;
   height: 100%;
+
+  #title {
+    text-align: center;
+  }
+
+  #grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px 50px;
+    margin: 50px auto;
+  }
 }

@@ -1,3 +1,7 @@
-<div id="container" class="card">
-  users dashboard
+<div id="container">
+  <h1 id="title">MANAGE USERS</h1>
+
+  <div id="grid-container">
+    <user-component *ngFor="let user of Users" [user]="user"></user-component>
+  </div>
 </div>

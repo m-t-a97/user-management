@@ -34,18 +34,6 @@ export class CreateUserFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  public createUser() {
-    try {
-      console.log(this.formGroup.value);
-      this.userCreationService.createUser(this.formGroup.value);
-      this.setFormMessage('');
-      this.formGroup.reset();
-    } catch (error) {
-      console.log(error);
-      this.setFormMessage(error['message']);
-    }
-  }
-
   public isFormValid(): void {
     if (this.Username.hasError('required')) {
       this.setFormMessage('Username is required');
@@ -58,6 +46,18 @@ export class CreateUserFormComponent implements OnInit {
 
   public setFormMessage(newMessage: string) {
     this.formMessage = newMessage;
+  }
+
+  public createUser() {
+    try {
+      console.log(this.formGroup.value);
+      this.userCreationService.createUser(this.formGroup.value);
+      this.setFormMessage('');
+      this.formGroup.reset();
+    } catch (error) {
+      console.log(error);
+      this.setFormMessage(error['message']);
+    }
   }
 
   public get Username(): AbstractControl {

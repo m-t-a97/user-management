@@ -1,3 +1,5 @@
+@use '../../../../styles/mixins.scss';
+
 #container {
   padding: 10px;
   width: 500px;
@@ -33,9 +35,7 @@
     }
 
     #form-message {
-      color: red;
-      font-size: 22px;
-      margin: 10px auto;
+      @include mixins.formMessageMixin;
     }
 
     #buttons-container {

@@ -3,7 +3,11 @@
   <h1>{{ Role }}</h1>
 
   <div id="buttons-container">
-    <button class="btn btn-primary">EDIT</button>
-    <button class="btn btn-warning">DELETE</button>
+    <button class="btn btn-primary" (click)="editUser()">EDIT</button>
+    <button class="btn btn-warning" (click)="deleteUser()">DELETE</button>
   </div>
+
+  <user-update-dialog-component
+    [userToEdit]="user"
+  ></user-update-dialog-component>
 </div>

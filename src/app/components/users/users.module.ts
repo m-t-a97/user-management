@@ -5,17 +5,19 @@ import { CreateUserFormComponent } from './create-user-form/create-user-form.com
 import { UserComponent } from './user/user.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserUpdateDialogComponent } from './user-update-dialog/user-update-dialog.component';
 
 const PRIVATE_COMPONENTS = [
   UsersDashboardComponent,
   UserComponent,
   CreateUserFormComponent,
+  UserUpdateDialogComponent,
 ];
 
 @NgModule({
   imports: [SharedCommonModule, FormsModule, ReactiveFormsModule],
   exports: [],
-  declarations: [...PRIVATE_COMPONENTS],
+  declarations: [...PRIVATE_COMPONENTS, UserUpdateDialogComponent],
   providers: [],
 })
 export class UsersModule {}

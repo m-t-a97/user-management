@@ -1,0 +1,53 @@
+<clr-modal [(clrModalOpen)]="canShowDialog">
+  <div class="modal-body">
+    <form clrForm [formGroup]="formGroup">
+      <h1 id="form-title">EDIT USER</h1>
+
+      <clr-input-container class="input-container">
+        <label>Username</label>
+        <input
+          clrInput
+          type="text"
+          formControlName="username"
+          required
+          (blur)="isFormValid()"
+          (change)="isFormValid()"
+          (input)="isFormValid()"
+        />
+      </clr-input-container>
+
+      <clr-input-container class="input-container">
+        <label>Role</label>
+        <input
+          clrInput
+          type="text"
+          formControlName="role"
+          required
+          (blur)="isFormValid()"
+          (change)="isFormValid()"
+          (input)="isFormValid()"
+        />
+      </clr-input-container>
+
+      <div id="form-message" *ngIf="formMessage != ''">
+        {{ formMessage }}
+      </div>
+
+      <div id="buttons-container">
+        <button
+          id="confirm-button"
+          type="button"
+          class="btn btn-success"
+          [disabled]="formGroup.invalid"
+          (click)="updateUser()"
+        >
+          CONFIRM
+        </button>
+
+        <button type="button" class="btn btn-warning" (click)="closeDialog()">
+          CANCEL
+        </button>
+      </div>
+    </form>
+  </div>
+</clr-modal>

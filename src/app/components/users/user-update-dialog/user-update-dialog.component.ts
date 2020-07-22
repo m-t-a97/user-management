@@ -36,6 +36,7 @@ export class UserUpdateDialogComponent implements OnInit {
     this.formGroup = this.formBuilder.group({
       username: [this.userToEdit.username, Validators.required],
       role: [this.userToEdit.role, Validators.required],
+      hasAccess: [this.userToEdit.hasAccess, Validators.required],
     });
   }
 
@@ -58,7 +59,7 @@ export class UserUpdateDialogComponent implements OnInit {
       this.userUpdaterService.updateUser(updatedUserData);
       this.closeDialog();
     } catch (error) {
-      console.log(error['message']);
+      console.log(error);
     }
   }
 
@@ -76,5 +77,9 @@ export class UserUpdateDialogComponent implements OnInit {
 
   public get Role(): AbstractControl {
     return this.formGroup.get('role');
+  }
+
+  public get HasAccess(): AbstractControl {
+    return this.formGroup.get('hasAccess');
   }
 }

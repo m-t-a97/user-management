@@ -1,0 +1,34 @@
+#container {
+  #title {
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+  }
+
+  #search-bar {
+    margin: 20px auto;
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+    box-shadow: 0 4px 5px 2px rgba(0, 0, 0, 0.2);
+
+    input {
+      font-size: 25px;
+      flex: 0.5;
+    }
+  }
+
+  #grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px 50px;
+    margin: 50px auto;
+  }
+
+  #message {
+    margin: 50px auto;
+    width: 50%;
+    font-size: 22px;
+    color: black;
+  }
+}

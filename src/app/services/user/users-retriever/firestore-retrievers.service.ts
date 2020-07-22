@@ -6,11 +6,15 @@ import { FirestoreService } from '../../firestore/firestore.service';
 
 @Injectable()
 export class FirestoreUsersRetrieverService implements UsersRetrieverService {
-  public constructor(private readonly firestoreService: FirestoreService) {}
+  private users$: Observable<IUser[]>;
 
-  public retrieveUsers(): IUser[] | Observable<IUser[]> | Promise<IUser[]> {
-    return this.firestoreService
+  public constructor(private readonly firestoreService: FirestoreService) {
+    this.users$ = this.firestoreService
       .getCollection('users')
       .valueChanges() as Observable<IUser[]>;
+  }
+
+  public retrieveUsers(): IUser[] | Observable<IUser[]> | Promise<IUser[]> {
+    return this.users$;
   }
 }

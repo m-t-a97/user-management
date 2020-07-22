@@ -1,0 +1,30 @@
+<div id="container">
+  <h1 id="title">SEARCH FOR A USER</h1>
+
+  <div id="search-bar" class="card">
+    <input
+      #searchInput
+      clrInput
+      placeholder="Enter a username or role"
+      required
+    />
+  </div>
+
+  <ng-container
+    *ngIf="UsersFound.length > 0; then displayUsers; else noUsersFound"
+  >
+  </ng-container>
+
+  <ng-template #displayUsers>
+    <div id="grid-container">
+      <user-component
+        *ngFor="let user of UsersFound"
+        [user]="user"
+      ></user-component>
+    </div>
+  </ng-template>
+
+  <ng-template #noUsersFound>
+    <div id="message">{{ message }}</div>
+  </ng-template>
+</div>

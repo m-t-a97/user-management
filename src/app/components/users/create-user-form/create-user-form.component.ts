@@ -8,6 +8,7 @@ import {
 import { UserCreationService } from 'src/app/services/user/user-creation/user-creation.service';
 import { FirestoreUserCreationService } from 'src/app/services/user/user-creation/firestore-user-creation.service';
 import { FirestoreService } from 'src/app/services/firestore/firestore.service';
+import { IUser } from 'src/app/models/users/i-user';
 
 @Component({
   selector: 'create-user-form-component',
@@ -50,8 +51,12 @@ export class CreateUserFormComponent implements OnInit {
 
   public createUser() {
     try {
-      console.log(this.formGroup.value);
-      this.userCreationService.createUser(this.formGroup.value);
+      const newUserData: IUser = {
+        ...this.formGroup.value,
+        hasAccess: true,
+      };
+
+      this.userCreationService.createUser(newUserData);
       this.setFormMessage('');
       this.formGroup.reset();
     } catch (error) {

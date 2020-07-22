@@ -29,6 +29,11 @@
         />
       </clr-input-container>
 
+      <div id="access-container">
+        <span>Toggle Access:</span>
+        <input type="checkbox" clrToggle formControlName="hasAccess"/>
+      </div>
+
       <div id="form-message" *ngIf="formMessage != ''">
         {{ formMessage }}
       </div>

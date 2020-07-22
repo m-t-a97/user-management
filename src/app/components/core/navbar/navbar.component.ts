@@ -20,6 +20,10 @@ export class NavbarComponent implements OnInit {
         name: 'USER CREATION',
         navigationLinkPath: '/user-creation',
       },
+      {
+        name: 'SEARCH USER',
+        navigationLinkPath: '/search-user',
+      },
     ];
   }
 

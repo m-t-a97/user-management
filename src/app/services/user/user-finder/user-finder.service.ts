@@ -2,5 +2,5 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export abstract class UserFinderService {
-  public abstract findUser(username: string);
+  public abstract findUser(searchValue: string);
 }

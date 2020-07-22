@@ -3,6 +3,7 @@ import { UserCreationService } from './user-creation.service';
 import { IUser } from '../../../models/users/i-user';
 import { FirestoreService } from '../../firestore/firestore.service';
 import { DocumentReference } from '@angular/fire/firestore';
+import * as firebase from 'firebase';
 
 @Injectable()
 export class FirestoreUserCreationService implements UserCreationService {
@@ -15,6 +16,7 @@ export class FirestoreUserCreationService implements UserCreationService {
       .then((document: DocumentReference) => {
         const dataToAddToDocument = {
           uid: document.id,
+          created: firebase.firestore.FieldValue.serverTimestamp(),
         };
 
         document.set(dataToAddToDocument, { merge: true });

@@ -3,10 +3,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedCommonModule } from './shared-common.module';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireFunctions } from '@angular/fire/functions';
 import { environment } from 'src/environments/environment';
-import { CoreComponentsModule } from '../components/core-components/exports';
+import { CoreComponentsModule } from '../components/core/exports';
 import { UsersModule } from '../components/users/exports';
-import { AppComponent } from '../components/core-components/app-component/app.component';
+import { AppComponent } from '../components/core/app-component/app.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +16,7 @@ import { AppComponent } from '../components/core-components/app-component/app.co
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseKey),
     AngularFirestoreModule,
+    AngularFireFunctions,
     CoreComponentsModule,
     UsersModule,
   ],

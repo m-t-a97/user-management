@@ -1,7 +1,37 @@
 <div id="container">
   <h1 id="title">MANAGE USERS</h1>
 
-  <div id="grid-container">
-    <user-component *ngFor="let user of Users" [user]="user"></user-component>
-  </div>
+  <ng-container *ngIf="users$ | async as users">
+    <!-- IF THERE ARE ANY USERS -->
+
+    <ng-container
+      *ngIf="users.length > 0; then displayUsers; else noUsersToDisplay"
+    >
+    </ng-container>
+
+    <!-------------------------------------------------->
+
+    <!-- DISPLAY THEM -->
+
+    <ng-template #displayUsers>
+      <div id="grid-container">
+        <user-component
+          *ngFor="let user of users"
+          [user]="user"
+        ></user-component>
+      </div>
+    </ng-template>
+
+    <!-------------------------------------------------->
+
+    <!-- ELSE NO USERS TO DISPLAY -->
+
+    <ng-template #noUsersToDisplay>
+      <p id="message">
+        There are no users to display...
+      </p>
+    </ng-template>
+
+    <!-------------------------------------------------->
+  </ng-container>
 </div>

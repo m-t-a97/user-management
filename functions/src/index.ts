@@ -1,13 +1,12 @@
 import * as functions from 'firebase-functions';
+import * as admin from 'firebase-admin';
 
-// export const helloWorld = functions
-//   .region('europe-west2')
-//   .https.onRequest((request, response) => {
-//     response.send('Hello from Firebase!');
-//   });
+admin.initializeApp();
 
-export const helloCallable = functions
+export const removeUserDocumentFromFirestore = functions
   .region('europe-west2')
   .https.onCall((data, context) => {
-    return data;
+    console.log(data);
+    const userID = data.userID;
+    return admin.firestore().collection('users').doc(userID).delete();
   });

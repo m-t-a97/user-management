@@ -5,4 +5,17 @@ body {
   font-family: "Rowdies", cursive;
   overflow-x: hidden;
   height: 100%;
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: black;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: white;
+    outline: 5px solid azure;
+  }
 }

@@ -11,7 +11,7 @@ import { FirestoreUserFinderService } from 'src/app/services/user/user-finder/fi
 import { IUser } from 'src/app/models/users/i-user';
 import { FirestoreService } from 'src/app/services/firestore/firestore.service';
 import { Subscription, fromEvent } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'user-search-component',
@@ -44,7 +44,7 @@ export class UserSearchComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private setupSubscriptionToSearchInput() {
     this.subscription = fromEvent(this.searchInput.nativeElement, 'keyup')
-      .pipe(debounceTime(1000))
+      .pipe(debounceTime(1000), distinctUntilChanged())
       .subscribe(async (event: Event) => {
         const searchValue = (<HTMLInputElement>event.target).value;
         this.currentSearchValue = searchValue;

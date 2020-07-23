@@ -16,6 +16,7 @@ form {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    color: black;
 
     label {
       margin: 10px 0 30px 0;
@@ -43,6 +44,8 @@ form {
   }
 
   #buttons-container {
+    margin: 10px auto;
+
     button {
       margin: 15px 10px;
       font-size: 22px;

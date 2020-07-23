@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 import { IUser } from '../../../models/users/i-user';
 import { UserUpdateDialogComponent } from '../user-update-dialog/user-update-dialog.component';
 import { UserRemovalService } from 'src/app/services/user/user-removal/user-removal.service';
@@ -14,6 +21,7 @@ import { FirestoreUserRemovalService } from 'src/app/services/user/user-removal/
 })
 export class UserComponent implements OnInit {
   @Input() public user: IUser;
+  @Output() public eventEmitter? = new EventEmitter();
 
   @ViewChild(UserUpdateDialogComponent)
   public userUpdateDialogComponent: UserUpdateDialogComponent;
@@ -28,10 +36,15 @@ export class UserComponent implements OnInit {
 
   public async deleteUser() {
     try {
-      this.userRemovalService.removeUser(this.user.uid);
+      await this.userRemovalService.removeUser(this.user.uid);
+      this.emitEventEmitter();
     } catch (error) {
       console.log(error);
     }
+  }
+
+  public emitEventEmitter() {
+    this.eventEmitter.emit('');
   }
 
   public get Username(): string {

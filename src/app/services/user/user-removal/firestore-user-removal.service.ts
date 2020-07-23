@@ -7,7 +7,7 @@ export class FirestoreUserRemovalService implements UserRemovalService {
   public constructor(private functions: AngularFireFunctions) {}
 
   public async removeUser(userID: string): Promise<any> {
-    this.functions
+    await this.functions
       .httpsCallable('removeUserDocumentFromFirestore')({
         userID: userID,
       })

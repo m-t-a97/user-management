@@ -10,13 +10,8 @@ import { UserFinderService } from 'src/app/services/user/user-finder/user-finder
 import { FirestoreUserFinderService } from 'src/app/services/user/user-finder/firestore-user-finder.service';
 import { IUser } from 'src/app/models/users/i-user';
 import { FirestoreService } from 'src/app/services/firestore/firestore.service';
-import { Subscription, fromEvent, of } from 'rxjs';
-import {
-  debounceTime,
-  map,
-  switchMap,
-  distinctUntilChanged,
-} from 'rxjs/operators';
+import { Subscription, fromEvent } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'user-search-component',
@@ -29,12 +24,11 @@ import {
 })
 export class UserSearchComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('searchInput') searchInput: ElementRef;
-
   private subscription = new Subscription();
-
   private usersFound: IUser[] = [];
-
   public message: string = '';
+  public currentSearchValue: string = '';
+  public isLoading: boolean = false;
 
   public constructor(private readonly userFinderService: UserFinderService) {}
 
@@ -50,23 +44,31 @@ export class UserSearchComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private setupSubscriptionToSearchInput() {
     this.subscription = fromEvent(this.searchInput.nativeElement, 'keyup')
-      .pipe(
-        debounceTime(1000),
-        map((event: Event) => (<HTMLInputElement>event.target).value),
-        distinctUntilChanged(),
-        switchMap((searchValue) => this.userFinderService.findUser(searchValue))
-      )
-      .subscribe((users: IUser[]) => {
-        console.log(users);
+      .pipe(debounceTime(1000))
+      .subscribe(async (event: Event) => {
+        const searchValue = (<HTMLInputElement>event.target).value;
+        this.currentSearchValue = searchValue;
+        this.setMessage('');
+        await this.findAndDisplayUsers();
       });
   }
 
-  public async findUser() {
-    try {
-    } catch (error) {
-      console.log(error);
-      this.setMessage('Failed to search for users...');
+  public async findAndDisplayUsers() {
+    this.isLoading = true;
+
+    const users = await this.userFinderService.findUser(
+      this.currentSearchValue
+    );
+
+    if (users) {
+      this.usersFound = users.docs.map((user: any) => user.data());
+      this.setMessage('');
+    } else {
+      this.usersFound = [];
+      this.setMessage('Could not find any users with this username or role...');
     }
+
+    this.isLoading = false;
   }
 
   public setMessage(newMessage: string) {

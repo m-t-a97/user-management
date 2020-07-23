@@ -2,12 +2,17 @@
   <h1 id="title">SEARCH FOR A USER</h1>
 
   <div id="search-bar" class="card">
+    <clr-icon shape="search" size="36"></clr-icon>
     <input
       #searchInput
       clrInput
       placeholder="Enter a username or role"
       required
     />
+  </div>
+
+  <div id="spinner-holder">
+    <clr-spinner clrMedium *ngIf="isLoading">Loading data</clr-spinner>
   </div>
 
   <ng-container
@@ -20,6 +25,7 @@
       <user-component
         *ngFor="let user of UsersFound"
         [user]="user"
+        (eventEmitter)="findAndDisplayUsers()"
       ></user-component>
     </div>
   </ng-template>

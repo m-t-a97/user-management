@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UserUpdaterService } from 'src/app/services/user/user-updater/user-updater.service';
 import { FirestoreUserUpdaterService } from 'src/app/services/user/user-updater/firestore-user-updater.service';
 import { FirestoreService } from 'src/app/services/firestore/firestore.service';
@@ -21,6 +21,7 @@ import { IUser } from 'src/app/models/users/i-user';
 })
 export class UserUpdateDialogComponent implements OnInit {
   @Input() public userToEdit: IUser;
+  @Output() public eventEmitter? = new EventEmitter();
 
   public canShowDialog: boolean = false;
 
@@ -58,9 +59,14 @@ export class UserUpdateDialogComponent implements OnInit {
       };
       this.userUpdaterService.updateUser(updatedUserData);
       this.closeDialog();
+      this.emitEventEmitter();
     } catch (error) {
       console.log(error);
     }
+  }
+
+  public emitEventEmitter() {
+    this.eventEmitter.emit('');
   }
 
   public closeDialog(): void {

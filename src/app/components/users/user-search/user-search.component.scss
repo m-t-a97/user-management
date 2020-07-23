@@ -1,7 +1,8 @@
+@use "../../../../styles/mixins.scss";
+
 #container {
   margin: 0;
   padding: 20px;
-  height: 100%;
 
   #title {
     font-weight: bold;
@@ -31,10 +32,7 @@
   }
 
   #grid-container {
-    margin: 50px 100px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px 30px;
+    @include mixins.userGridMixin;
   }
 
   #message {

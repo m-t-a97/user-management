@@ -3,3 +3,10 @@
   font-size: 22px;
   margin: 10px auto;
 }
+
+@mixin userGridMixin {
+  margin: 50px 50px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px 30px;
+}
